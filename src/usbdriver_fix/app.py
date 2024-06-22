@@ -15,7 +15,6 @@ class App(tk.Tk):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.style = ttk.Style()
-        self.style.theme_use('alt')
 
 
 class ActionPickerLayout(ttk.Frame):
@@ -53,11 +52,14 @@ class ActionPicker(ActionPickerLayout):
 
         # Set platform-specific config.
         if self.platform.startswith('linux'):
+            self.parent.style.theme_use('default')
             self.start_dir = f'/media/{getenv("USER")}'
             self.sys_button.state(['disabled'])
         elif 'win' in self.platform:
+            self.parent.style.theme_use('winnative')
             self.start_dir = Path.home()
         elif self.platform == 'darwin':
+            self.parent.style.theme_use('aqua')
             self.sys_button.state(['disabled'])
             self.start_dir = Path.home()
 
