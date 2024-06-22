@@ -1,0 +1,15 @@
+IGNORE_PATS = [
+    '*.CHK',
+    '*.dat',
+    '*.dll',
+    '*.exe',
+    '*.EXE',
+    '*.ini',
+    '*.lnk',
+    '*.rar',
+    '.~lock.*',
+    '~*',
+    'FOUND.*',
+    'IndexerVolumeGuid',
+    'System Volume Information',
+]

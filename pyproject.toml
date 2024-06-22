@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "usbdriver_fix"
+description = "Fix cause and symptoms of USBDriver.exe virus on the host and USB drives."
+readme = "README.md"
+authors = [
+  { name="Nate Marti", email="nate_marti@sil.org" },
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "psutil",
+]
+dynamic = ["version"]
+
+[project.gui-scripts]
+usbdriver-fix = "usbdriver_fix.app:main"
+
+[project.urls]
+Homepage = "https://github.com/sil-car/usbdriver-fix"
+Issues = "https://github.com/sil-car/usbdriver-fix/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "usbdriver_fix.__version__"}
