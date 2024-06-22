@@ -25,7 +25,7 @@ def is_virus_dir(dirpath):
         return False
 
 
-def remove_bad_files(basedir):
+def remove_bad_files(basedir, app):
     message = "Échec de suppression de mauvais fichiers."
 
     # Remove virus directories.
@@ -58,7 +58,8 @@ def remove_bad_files(basedir):
 
     # Remove all EXE files.
     exes = [f for f in Path(basedir).rglob('*.exe')]
-    exes.extend([f for f in Path(basedir).rglob('*.EXE')])
+    if 'win' not in app.platform:
+        exes.extend([f for f in Path(basedir).rglob('*.EXE')])
     for f in exes:
         print(f"Removing: {f}")
         try:
@@ -90,7 +91,7 @@ def fix_usb(basedir, app=None):
     r = retrieve_hidden_files(basedir)
     if isinstance(r, str):
         result = r
-    r = remove_bad_files(basedir)
+    r = remove_bad_files(basedir, app=app)
     if isinstance(r, str):
         result = r
     app.usb_q.put(result)
