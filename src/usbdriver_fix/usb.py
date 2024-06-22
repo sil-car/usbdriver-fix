@@ -83,7 +83,7 @@ def retrieve_hidden_files(basedir):
             return f"{message}: {e}"
 
 
-def fix_usb(basedir, app=None):
+def fix(basedir, app=None):
     result = False
     r = verify_infected(basedir)
     if isinstance(r, str):

@@ -8,7 +8,8 @@ from threading import Thread
 from tkinter import filedialog
 from tkinter import messagebox
 
-from .usb.fix import fix_usb
+from . import host
+from . import usb
 
 
 class App(tk.Tk):
@@ -79,7 +80,7 @@ class ActionPicker(ActionPickerLayout):
         if len(dir_path) < 1:  # user cancelled USB selection
             return
         else:
-            t = Thread(target=fix_usb, args=(dir_path, self), daemon=True)
+            t = Thread(target=usb.fix, args=(dir_path, self), daemon=True)
             t.start()
             ProgressWindow(self)
 
@@ -91,7 +92,11 @@ class ActionPicker(ActionPickerLayout):
             messagebox.showinfo(title="Succès", message="Clé nettoyée !")
 
     def on_sys_released(self):
-        pass
+        result = host.fix()
+        if isinstance(result, str):
+            messagebox.showerror(title="Échec", message=result)
+        else:
+            messagebox.showinfo(title="Succès", message="Système nettoyé !")
 
 
 class ProgressWindow(tk.Toplevel):
