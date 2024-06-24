@@ -6,10 +6,10 @@ from pathlib import Path
 def fix():
     # Service to stop:
     # - MSBuild.exe
-    msbuild = psutil.win_service_get('MSBuild')
-    if msbuild:
+    msbuild_procs = [p for p in psutil.process_iter(attrs=["name"]) if p.name() == 'MSBuild.EXE']  # noqa: E501
+    for p in msbuild_procs:
         try:
-            psutil.Process(msbuild.pid()).kill()
+            p.kill()
         except Exception as e:
             return f"Échec d'arrêt de service de Windows : {e}"
 
