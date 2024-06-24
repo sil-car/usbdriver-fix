@@ -14,9 +14,9 @@ def fix():
             return f"Échec d'arrêt de service de Windows : {e}"
 
     # Files to remove:
-    # - C:\Users\Public\Library\MSBuild.exe
-    # - C:\Users\Public\Library\Version.dll
-    for n in ['MSBuild.exe', 'Version.dll']:
+    # - C:\Users\Public\Library\MSBuild.EXE
+    # - C:\Users\Public\Library\version.dll
+    for n in ['MSBuild.EXE', 'version.dll']:
         f = Path("C:/Users/Public/Library") / n
         if f.is_file():
             try:
