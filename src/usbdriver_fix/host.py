@@ -17,7 +17,7 @@ def fix():
     # - C:\Users\Public\Library\MSBuild.EXE
     # - C:\Users\Public\Library\version.dll
     for n in ['MSBuild.EXE', 'version.dll']:
-        f = Path("C:/Users/Public/Library") / n
+        f = Path("C:/Users/Public/Libraries") / n
         if f.is_file():
             try:
                 f.unlink()
