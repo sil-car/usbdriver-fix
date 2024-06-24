@@ -47,7 +47,7 @@ def remove_bad_files(basedir, app):
                     return f"{message}: {e}"
 
     # Remove virus files.
-    names = ['USB Driver.exe', 'MSBuild.exe', 'Version.dll']
+    names = ['USB Driver.exe', 'MSBuild.EXE', 'version.dll']
     for n in names:
         for f in Path(basedir).rglob(n):
             print(f"Removing: {f}")
@@ -61,7 +61,7 @@ def remove_bad_files(basedir, app):
     if 'win' not in app.platform:
         exes.extend([f for f in Path(basedir).rglob('*.EXE')])
     for f in exes:
-        print(f"Removing: {f}")
+        print(f"Removing EXE: {f}")
         try:
             f.unlink()
         except Exception as e:
