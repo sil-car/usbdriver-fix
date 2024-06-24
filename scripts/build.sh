@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
 # Create venv.
 env=buildenv  # has to match folder name in app.spec
