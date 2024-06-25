@@ -1,3 +1,5 @@
+import logging
+import sys
 import tkinter as tk
 import tkinter.ttk as ttk
 from os import getenv
@@ -13,9 +15,16 @@ from . import usb
 
 
 class App(tk.Tk):
-    def __init__(self, **kwargs):
+    def __init__(self, runmode, **kwargs):
         super().__init__(**kwargs)
         self.style = ttk.Style()
+        self.runmode = runmode
+        if self.runmode == 'frozen':
+            self.data_dir = Path(sys._MEIPASS) / 'data'
+        else:
+            self.data_dir = Path(__file__).parents[2] / 'data'
+        iconfile = str(self.data_dir / 'icon.png')
+        self.iconphoto(True, tk.PhotoImage(file=iconfile))
 
 
 class ActionPickerLayout(ttk.Frame):
@@ -118,8 +127,26 @@ class ProgressWindow(tk.Toplevel):
 
 
 def main():
+    log_format = '%(asctime)s %(levelname)s: %(message)s'
+    date_format = '%H:%M:%S'
+    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+        runmode = 'frozen'
+        logging.basicConfig(
+            filename=Path(sys.executable).parent / 'Fix USBDriver.log',
+            level=logging.INFO,
+            format=log_format,
+            datefmt=date_format,
+        )
+    else:
+        runmode = 'script'
+        logging.basicConfig(
+            stream=sys.stdout,
+            level=logging.INFO,
+            format=log_format,
+            datefmt=date_format,
+        )
     classname = 'fixusbdriver'
-    app = App(className=classname)
+    app = App(className=classname, runmode=runmode)
     ActionPicker(app, class_=classname)
     app.mainloop()
 

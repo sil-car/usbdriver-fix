@@ -1,3 +1,4 @@
+import logging
 import os
 import shutil
 from pathlib import Path
@@ -31,7 +32,7 @@ def remove_bad_files(basedir, app):
     # Remove virus directories.
     for dirpath, dirnames, filenames in os.walk(basedir):
         if is_virus_dir(dirpath):
-            print(f"Removing tree: {dirpath}")
+            logging.info(f"Suppression de dossier : {dirpath}")
             try:
                 shutil.rmtree(dirpath)
                 break
@@ -40,20 +41,22 @@ def remove_bad_files(basedir, app):
         for d in dirnames:
             subdirpath = Path(dirpath) / d
             if is_virus_dir(subdirpath):
-                print(f"Removing tree: {subdirpath}")
+                logging.info(f"Suppression de dossier : {subdirpath}")
                 try:
                     shutil.rmtree(subdirpath)
                 except Exception as e:
+                    logging.error(f"{message: {e}}")
                     return f"{message}: {e}"
 
     # Remove virus files.
     names = ['USB Driver.exe', 'MSBuild.EXE', 'version.dll']
     for n in names:
         for f in Path(basedir).rglob(n):
-            print(f"Removing: {f}")
+            logging.info(f"Suppression de fichier malévolent : {f}")
             try:
                 f.unlink()
             except Exception as e:
+                logging.error(f"{message: {e}}")
                 return f"{message}: {e}"
 
     # Remove all EXE files.
@@ -61,10 +64,11 @@ def remove_bad_files(basedir, app):
     if 'win' not in app.platform:
         exes.extend([f for f in Path(basedir).rglob('*.EXE')])
     for f in exes:
-        print(f"Removing EXE: {f}")
+        logging.info(f"Suppression de fichier EXE : {f}")
         try:
             f.unlink()
         except Exception as e:
+            logging.error(f"{message: {e}}")
             return f"{message}: {e}"
     return True
 
@@ -75,11 +79,12 @@ def retrieve_hidden_files(basedir):
     fixed_path_file_pairs = get_fixed_path_file_pairs(all_paths)
     file_pairs_to_move = [p for p in fixed_path_file_pairs if p[1] != basedir and p[0] != p[1]]  # noqa: E501
     for s, d in file_pairs_to_move:
-        print(f"Moving: {s} to {d}")
+        logging.info(f"Déplacement : {s} à {d}")
         try:
             Path(d).parent.mkdir(exist_ok=True, parents=True)
             shutil.move(s, d)
         except Exception as e:
+            logging.error(f"{message: {e}}")
             return f"{message}: {e}"
 
 

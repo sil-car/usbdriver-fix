@@ -16,7 +16,7 @@ else
 fi
 # Build package.
 python -m pip install pyinstaller
-python -m pip install .
+python -m pip install .  # gets app dependencies
 # Build executable.
 pyinstaller --clean app.spec
 # Exit venv.
