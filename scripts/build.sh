@@ -3,7 +3,7 @@
 
 # Create venv.
 env=buildenv  # has to match folder name in app.spec
-if python3 --version >/dev/null; then
+if python3 --version >/dev/null 2>&1; then
     python3 -m venv "$env"
 else
     python -m venv "$env"
