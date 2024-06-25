@@ -1,13 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
-import sys
-
-if 'win' in sys.platform:
-    exe_path = 'buildenv/Scripts/usbdriver-fix'
-else:
-    exe_path = 'buildenv/bin/usbdriver-fix'
+# flake8: noqa
 
 a = Analysis(
-    [exe_path],
+    ['src/runapp.py'],
     pathex=['src'],
     binaries=[],
     datas=[],
