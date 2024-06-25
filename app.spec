@@ -1,8 +1,13 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
 
+if 'win' in sys.platform:
+    exe_path = 'buildenv/Scripts/usbdriver-fix'
+else:
+    exe_path = 'buildenv/bin/usbdriver-fix'
 
 a = Analysis(
-    ['buildenv/bin/usbdriver-fix'],
+    [],
     pathex=['src'],
     binaries=[],
     datas=[],
