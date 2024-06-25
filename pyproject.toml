@@ -21,7 +21,7 @@ dependencies = [
 dynamic = ["version"]
 
 [project.gui-scripts]
-usbdriver-fix = "usbdriver_fix.app:main"
+fix-usbdriver = "usbdriver_fix.app:main"
 
 [project.urls]
 Homepage = "https://github.com/sil-car/usbdriver-fix"
