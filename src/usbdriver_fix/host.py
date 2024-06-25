@@ -23,7 +23,7 @@ def fix():
     for n in ['MSBuild.EXE', 'version.dll']:
         f = Path("C:/Users/Public/Libraries") / n
         if f.is_file():
-            logging.info(f"Supppression de fichier malévolent : {f}")
+            logging.info(f"Supppression de fichier malveillant : {f}")
             try:
                 f.unlink()
             except Exception as e:

@@ -52,7 +52,7 @@ def remove_bad_files(basedir, app):
     names = ['USB Driver.exe', 'MSBuild.EXE', 'version.dll']
     for n in names:
         for f in Path(basedir).rglob(n):
-            logging.info(f"Suppression de fichier malévolent : {f}")
+            logging.info(f"Suppression de fichier malveillant : {f}")
             try:
                 f.unlink()
             except Exception as e:
