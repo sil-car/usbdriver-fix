@@ -3,10 +3,11 @@
 
 # Create venv.
 env=buildenv  # has to match folder name in app.spec
-python3 -m venv "$env" || python -m venv "$env"
+python3 -m venv "$env" 2>/dev/null || python -m venv "$env"
 # Enter venv.
 source "$env/bin/activate"
 # Build package.
+python -m pip install pyinstaller
 python -m pip install .
 # Build executable.
 pyinstaller --clean app.spec
