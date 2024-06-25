@@ -7,7 +7,7 @@ else:
     exe_path = 'buildenv/bin/usbdriver-fix'
 
 a = Analysis(
-    [],
+    [exe_path],
     pathex=['src'],
     binaries=[],
     datas=[],
