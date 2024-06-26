@@ -47,6 +47,8 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 name: 'Fix-USBDriver'
+            - name: list files
+              run: ls -l .
             - name: prepare release
               uses: softprops/action-gh-release@v1
               with:
