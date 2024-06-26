@@ -34,6 +34,7 @@ jobs:
                 upload_exe_with_name: 'Fix USBDriver'
 
     release-to-github:
+        needs: [build-ubuntu, build-windows]
         runs-on: ubuntu-latest
         steps:
             - name: get tag
@@ -41,11 +42,11 @@ jobs:
             - name: download windows artifact
               uses: actions/download-artifact@v4
               with:
-                name: Fix USBDriver.exe
+                name: 'Fix USBDriver.exe'
             - name: download linux artifact
               uses: actions/download-artifact@v4
               with:
-                name: Fix USBDriver
+                name: 'Fix USBDriver'
             - name: prepare release
               uses: softprops/action-gh-release@v1
               with:
