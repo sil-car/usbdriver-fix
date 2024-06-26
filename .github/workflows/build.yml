@@ -42,11 +42,15 @@ jobs:
             - name: download windows artifact
               uses: actions/download-artifact@v4
               with:
-                name: Fix-USBDriver_${{ env.TAG_NAME }}.exe
+                name: Fix-USBDriver.exe
             - name: download linux artifact
               uses: actions/download-artifact@v4
               with:
-                name: 'Fix-USBDriver_${{ env.TAG_NAME }}'
+                name: 'Fix-USBDriver'
+            - name: rename files
+              run: |
+                mv Fix-USBDriver{,${{ env.TAG_NAME }}}.exe
+                mv Fix-USBDriver{,${{ env.TAG_NAME }}}
             - name: prepare release
               uses: softprops/action-gh-release@v1
               with:
