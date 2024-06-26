@@ -38,7 +38,15 @@ jobs:
         steps:
             - name: get tag
               run: echo "TAG_NAME=v$(date +%Y.%m.%d)" >> $GITHUB_ENV
-            - name: release
+            - name: download windows artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: Fix USBDriver.exe
+            - name: download linux artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: Fix USBDriver
+            - name: prepare release
               uses: softprops/action-gh-release@v1
               with:
                 tag_name: ${{ env.TAG_NAME }}
