@@ -53,5 +53,5 @@ jobs:
                 tag_name: ${{ env.TAG_NAME }}
                 draft: true
                 files: |
-                    'Fix USBDriver'
-                    'Fix USBDriver.exe'
+                    Fix USBDriver
+                    Fix USBDriver.exe
