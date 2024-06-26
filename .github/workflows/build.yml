@@ -49,8 +49,8 @@ jobs:
                 name: 'Fix-USBDriver'
             - name: rename files
               run: |
-                mv Fix-USBDriver{,${{ env.TAG_NAME }}}.exe
-                mv Fix-USBDriver{,${{ env.TAG_NAME }}}
+                mv Fix-USBDriver{,_${{ env.TAG_NAME }}}.exe
+                mv Fix-USBDriver{,_${{ env.TAG_NAME }}}
             - name: prepare release
               uses: softprops/action-gh-release@v1
               with:
