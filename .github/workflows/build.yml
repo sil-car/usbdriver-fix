@@ -1,5 +1,6 @@
 name: Build & release
 on:
+    push:
     workflow_dispatch:
 
 jobs:
@@ -36,9 +37,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: get tag
-              run: echo "TAG_NAME=(v$(date +%Y.%m.%d)" >> $GITHUB_ENV
+              run: echo "TAG_NAME=v$(date +%Y.%m.%d)" >> $GITHUB_ENV
             - name: release
               uses: softprops/action-gh-release@v1
               with:
                 tag_name: ${{ env.TAG_NAME }}
                 draft: true
+                files: |
+                    'Fix USBDriver'
+                    'Fix USBDriver.exe'
