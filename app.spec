@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='Fix USBDriver',
+    name='Fix-USBDriver',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
