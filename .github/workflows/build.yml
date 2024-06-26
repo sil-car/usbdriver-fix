@@ -35,8 +35,10 @@ jobs:
     release-to-github:
         runs-on: ubuntu-latest
         steps:
+            - name: get tag
+              run: echo "TAG_NAME=(v$(date +%Y.%m.%d)" >> $GITHUB_ENV
             - name: release
               uses: softprops/action-gh-release@v1
               with:
-                tag_name: v$(date +%Y.%m.%d)
+                tag_name: ${{ env.TAG_NAME }}
                 draft: true
