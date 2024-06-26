@@ -1,10 +1,10 @@
-name: Build app with PyInstaller & release
+name: Build & release
 on:
     workflow_dispatch:
 
 jobs:
-    build-windowns:
-        runs-on: windows-10
+    build-windows:
+        runs-on: windows-2019
         steps:
             - name: Build executable
               uses: sayyid5416/pyinstaller@v1
@@ -12,7 +12,15 @@ jobs:
                 python_ver: '3.12'
                 spec: 'app.spec'
                 requirements: 'requirements.txt'
-                upload_exe_with_name: 'Fix USBDriver'
+                upload_exe_with_name: 'Fix USBDriver.exe'
+
+            # - name: Upload executable
+            #   uses: actions/upload-artifact@v4
+            #   with: 
+            #     name: 'Fix USBDriver'
+            #     path: dist/Fix USBDriver.exe
+            #     compression-level: 0
+
     build-ubuntu:
         runs-on: ubuntu-20.04
         steps:
