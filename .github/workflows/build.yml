@@ -31,3 +31,12 @@ jobs:
                 spec: 'app.spec'
                 requirements: 'requirements.txt'
                 upload_exe_with_name: 'Fix USBDriver'
+
+    release-to-github:
+        runs-on: ubuntu-latest
+        steps:
+            - name: release
+              uses: softprops/action-gh-release@v1
+              with:
+                tag_name: v$(date +%Y.%m.%d)
+                draft: true
